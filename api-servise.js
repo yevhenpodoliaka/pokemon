@@ -4,29 +4,25 @@ export class ApiServisePokemon {
   constructor() {
     this.url = BASE_URL;
     this.nextUrl = null;
-    this.Prevurl = null;
+    this.prevUrl = null;
+    this.favoriteList = []??JSON.parse(localStorage.getItem("favorite-list"));
   
   }
 
   async getPokemon(init) {
-    try {
+    console.log(this);
       const response = await fetch(`${BASE_URL}/${init}`);
       const pokemon = response.json();
       return pokemon;
-    } catch (error) {
-      console.log(error.message);
-    }
-    
-   
+ 
   }
 
   async getPokemonList(url) {
-    try {
        const response = await fetch(url);
        const responseJson = await response.json();
        // console.log("response json   ", responseJson);
        this.nextUrl = responseJson.next;
-       this.Prevurl = responseJson.previous;
+       this.prevUrl = responseJson.previous;
        // console.log(this);
        const results = await responseJson.results;
        // console.log('results   ', results);
@@ -38,19 +34,18 @@ export class ApiServisePokemon {
        });
        // console.log('arr   ',arr);
        return arr;
-    } catch (error) {
-       console.log(error.message);
-    }
+  
    
   }
 
   async getFavoritesPokemon() {
-     const favoriteList = JSON.parse(localStorage.getItem("favorite-list"));
-    console.log(favoriteList);
+    const favoriteList = JSON.parse(localStorage.getItem("favorite-list"));
+    // console.log(favoriteList);
     const arrPromises = await favoriteList.map(pokemon => {
     return  this.getPokemon(pokemon);
     })
-     const arrFavorites = await Promise.all(arrPromises);
+    const arrFavorites = await Promise.all(arrPromises);
     return (arrFavorites);
   }
+
 }

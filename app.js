@@ -14,12 +14,25 @@ refs.btnBackToCatalog.addEventListener("click", closeFavoritesList);
 
 async function openFavoritesList() {
   showFaworitesList();
-  const pokemonList = await goPokemon.getFavoritesPokemon();
-  pokemonList.forEach(pokemon => {
-    console.log(pokemon);
-    goPokemon.getPokemon(pokemon.name).then(createMarkupCard).then(uppendFavoriteList);
-  })
-  console.log(pokemonList);
+    const favoriteList = JSON.parse(localStorage.getItem("favorite-list"));
+    if (!favoriteList) {
+      return alert("Favorite list is NULL");
+    }
+  try {
+     const pokemonList = await goPokemon.getFavoritesPokemon();
+    //  console.log(pokemonList);
+     pokemonList.forEach((pokemon) => {
+      //  console.log(pokemon);
+       goPokemon
+         .getPokemon(pokemon.name)
+         .then(createMarkupCard)
+         .then(uppendFavoriteList);
+     });
+    //  console.log(pokemonList);
+  } catch (error) {
+    console.log(error.message);
+  }
+ 
 }
 function closeFavoritesList() {
   showFaworitesList()
@@ -35,12 +48,12 @@ function onBtnNextClick() {
 }
 
 function onBtnBackClick() {
-  if (goPokemon.Prevurl === null) {
+  if (goPokemon.prevUrl === null) {
     alert("it`s 1st page");
     return;
   }
   console.log("back");
-  createMarkupList(goPokemon.Prevurl).then(uppendMarkup);
+  createMarkupList(goPokemon.prevUrl).then(uppendMarkup);
 }
 
 function uppendMarkup(string) {
@@ -84,21 +97,20 @@ function onOpenModal(e) {
   refs.btnAddFavorites.setAttribute('id', pokemon);
   const favoriteList = JSON.parse(localStorage.getItem("favorite-list"));
   // console.log(favoriteList);
-  if (favoriteList.includes(pokemon)) {
+  if (favoriteList && favoriteList.includes(pokemon)) {
     refs.btnAddFavorites.disabled = true;
   }
   
 }
 
 
-const favArr = [];
+
 function addInFavoriteList(e) {
   if (!e.target.classList.contains("btn-add-favorites__backdrop")) {
     return;
   }
-
-  favArr.push(e.target.id);
-  localStorage.setItem("favorite-list", JSON.stringify(favArr));
+  goPokemon.favoriteList.push(e.target.id);
+  localStorage.setItem("favorite-list", JSON.stringify(goPokemon.favoriteList));
  refs.btnAddFavorites.disabled = true;
 };
 
