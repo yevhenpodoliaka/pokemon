@@ -43,4 +43,14 @@ export class ApiServisePokemon {
     }
    
   }
+
+  async getFavoritesPokemon() {
+     const favoriteList = JSON.parse(localStorage.getItem("favorite-list"));
+    console.log(favoriteList);
+    const arrPromises = await favoriteList.map(pokemon => {
+    return  this.getPokemon(pokemon);
+    })
+     const arrFavorites = await Promise.all(arrPromises);
+    return (arrFavorites);
+  }
 }

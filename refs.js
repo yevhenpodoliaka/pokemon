@@ -1,5 +1,6 @@
 export default {
   container: document.querySelector(".container"),
+  favoriteContainer: document.querySelector(".favorite-container"),
   btnNext: document.querySelector("#next"),
   btnBack: document.querySelector("#back"),
   backdrop: document.querySelector(".backdrop"),

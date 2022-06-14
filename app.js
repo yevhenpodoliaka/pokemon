@@ -12,11 +12,18 @@ refs.btnBack.addEventListener("click", onBtnBackClick);
 refs.btnFavorites.addEventListener('click',openFavoritesList)
 refs.btnBackToCatalog.addEventListener("click", closeFavoritesList);
 
-function openFavoritesList() {
-   showFaworitesList();
+async function openFavoritesList() {
+  showFaworitesList();
+  const pokemonList = await goPokemon.getFavoritesPokemon();
+  pokemonList.forEach(pokemon => {
+    console.log(pokemon);
+    goPokemon.getPokemon(pokemon.name).then(createMarkupCard).then(uppendFavoriteList);
+  })
+  console.log(pokemonList);
 }
 function closeFavoritesList() {
- showFaworitesList()
+  showFaworitesList()
+  refs.favoriteContainer.innerHTML = '';
 }
 function onBtnNextClick() {
   if (goPokemon.nextUrl === null) {
@@ -76,7 +83,7 @@ function onOpenModal(e) {
   refs.btnAddFavorites.getAttribute('id');
   refs.btnAddFavorites.setAttribute('id', pokemon);
   const favoriteList = JSON.parse(localStorage.getItem("favorite-list"));
-  console.log(favoriteList);
+  // console.log(favoriteList);
   if (favoriteList.includes(pokemon)) {
     refs.btnAddFavorites.disabled = true;
   }
@@ -99,7 +106,12 @@ function showFaworitesList() {
      refs.btnBack.classList.toggle("visually-hidden");
      refs.btnNext.classList.toggle("visually-hidden");
      refs.container.classList.toggle("visually-hidden");
+     refs.favoriteContainer.classList.toggle("visually-hidden");
      refs.btnFavorites.classList.toggle("visually-hidden");
      refs.btnBackToCatalog.classList.toggle("visually-hidden");
+}
+
+function uppendFavoriteList(string) {
+  refs.favoriteContainer.insertAdjacentHTML("beforeend", string);
 }
 
