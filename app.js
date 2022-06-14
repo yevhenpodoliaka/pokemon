@@ -36,10 +36,15 @@ function uppendMarkupModal(string) {
 }
 
 async function createMarkupList(url) {
-  const promises = await goPokemon.getPokemonList(url);
-  const arr = await Promise.all(promises);
-  const markup = await createMarkup(arr);
-  return markup;
+  try {
+     const promises = await goPokemon.getPokemonList(url);
+     const arr = await Promise.all(promises);
+     const markup = await createMarkup(arr);
+     return markup;
+  } catch (error) {
+    console.log(error.message);
+  }
+ 
 }
 
 createMarkupList(goPokemon.url).then(uppendMarkup);

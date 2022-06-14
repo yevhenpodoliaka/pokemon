@@ -17,10 +17,12 @@ body {
 
 }
 .header {
+  height: 80px;
+  padding: 15px;
   background-color: #ef5350;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .container {
@@ -66,8 +68,6 @@ body {
     pointer-events: none;
 }
 
-.btn-close__backdrop {
-    position: absolute;
-    top: 100px;
-    right: 100px;
-}
+/* .btn-close__backdrop {
+  
+} */

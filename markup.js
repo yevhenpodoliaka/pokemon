@@ -1,5 +1,5 @@
 function createMarkupCard({ sprites, name, weight, height }) {
-  return `<div class="modal__card">
+  return `<div class="modal__card"  id="${name}">
     <img src="${sprites.other.dream_world.front_default}" alt="${name}" class="card__img" width="150" height="150 >
     <div class="card__description">
         <p class="name">name :${name}</p>
