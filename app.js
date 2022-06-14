@@ -61,7 +61,8 @@ createMarkupList(goPokemon.url).then(uppendMarkup);
 function onCloseModal() {
   refs.innerBackdrop.innerHTML = "";
   refs.backdrop.classList.add("visually-hidden");
-refs.btnAddFavorites.removeAttribute('id');
+  refs.btnAddFavorites.removeAttribute('id');
+   refs.btnAddFavorites.disabled = false;
 }
 
 function onOpenModal(e) {
@@ -74,13 +75,24 @@ function onOpenModal(e) {
   refs.backdrop.classList.remove("visually-hidden");
   refs.btnAddFavorites.getAttribute('id');
   refs.btnAddFavorites.setAttribute('id', pokemon);
+  const favoriteList = JSON.parse(localStorage.getItem("favorite-list"));
+  console.log(favoriteList);
+  if (favoriteList.includes(pokemon)) {
+    refs.btnAddFavorites.disabled = true;
+  }
   
 }
+
+
+const favArr = [];
 function addInFavoriteList(e) {
-    if (!e.target.classList.contains("btn-add-favorites__backdrop")) {
-      return;
-    }
-  console.log(e.target.id);
+  if (!e.target.classList.contains("btn-add-favorites__backdrop")) {
+    return;
+  }
+
+  favArr.push(e.target.id);
+  localStorage.setItem("favorite-list", JSON.stringify(favArr));
+ refs.btnAddFavorites.disabled = true;
 };
 
 function showFaworitesList() {
@@ -90,3 +102,4 @@ function showFaworitesList() {
      refs.btnFavorites.classList.toggle("visually-hidden");
      refs.btnBackToCatalog.classList.toggle("visually-hidden");
 }
+
