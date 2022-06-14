@@ -17,12 +17,31 @@ body {
 
 }
 .header {
+    position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
   height: 80px;
   padding: 15px;
   background-color: #ef5350;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #ef5350;
+  display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.footer button{
+  width: 30%;
+  padding: 5px;
 }
 
 .container {
@@ -58,7 +77,12 @@ body {
     align-items: center;
     justify-content: center;
 }
-
+.modal{
+  position: relative;
+}
+.btn-close__backdrop{
+  margin-left: 50px;
+}
 .backdrop .card {
     width: 250px;
 }
@@ -68,6 +92,4 @@ body {
     pointer-events: none;
 }
 
-/* .btn-close__backdrop {
-  
-} */
+
