@@ -48,6 +48,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 10px;
+    margin: 110px 0 60px 0;
 }
 
 .card {
@@ -87,9 +88,20 @@ body {
     width: 250px;
 }
 
-.is-hidden {
+/* .is-hidden {
     opacity: 0;
     pointer-events: none;
+} */
+
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0000);
+  clip-path: inset(50%);
+  margin: -1px;
 }
-
-
