@@ -1,5 +1,5 @@
 export default {
-  container: document.querySelector(".container"),
+  catalog: document.querySelector(".container"),
   favoriteContainer: document.querySelector(".favorite-container"),
   btnNext: document.querySelector("#next"),
   btnBack: document.querySelector("#back"),
