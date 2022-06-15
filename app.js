@@ -105,15 +105,15 @@ function uppendFavoriteList(string) {
 // modal--------------------------------
 function onOpenModal(e) {
   if (e.target.nodeName === "LI" || e.target.nodeName === "IMG") {
-   const pokemon = e.target.dataset.name;
-   goPokemon.getPokemon(pokemon).then(createMarkupCard).then(uppendMarkupModal);
-   refs.backdrop.classList.remove("visually-hidden");
-   refs.btnAddFavorites.getAttribute("id");
-   refs.btnAddFavorites.setAttribute("id", pokemon);
-   const favoriteList = JSON.parse(localStorage.getItem("favorite-list"));
-   if (favoriteList && favoriteList.includes(pokemon)) {
-     refs.btnAddFavorites.disabled = true;
-   }
+  const pokemon = e.target.dataset.name;
+  goPokemon.getPokemon(pokemon).then(createMarkupCard).then(uppendMarkupModal);
+  refs.backdrop.classList.remove("visually-hidden");
+  refs.btnAddFavorites.getAttribute("id");
+  refs.btnAddFavorites.setAttribute("id", pokemon);
+  const favoriteList = JSON.parse(localStorage.getItem("favorite-list"));
+  if (favoriteList && favoriteList.includes(pokemon)) {
+    refs.btnAddFavorites.disabled = true;
+  }
   }
 
   
