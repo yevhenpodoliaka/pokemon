@@ -1,4 +1,5 @@
 export default {
+  form:document.querySelector('.form'),
   catalog: document.querySelector(".container"),
   favoriteContainer: document.querySelector(".favorite-container"),
   btnNext: document.querySelector("#next"),
