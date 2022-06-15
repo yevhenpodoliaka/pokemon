@@ -5,7 +5,7 @@ export class ApiServisePokemon {
     this.url = BASE_URL;
     this.nextUrl = null;
     this.prevUrl = null;
-    this.favoriteList = [] ?? JSON.parse(localStorage.getItem("favorite-list"));
+    this.favoriteList = JSON.parse(localStorage.getItem("favorite-list")) ??[];
   }
 
   async getPokemon(init) {
@@ -30,9 +30,7 @@ export class ApiServisePokemon {
   }
 
   async getFavoritesPokemon() {
-    const favoriteList = JSON.parse(localStorage.getItem("favorite-list"));
-
-    const arrPromises = await favoriteList.map((pokemon) => {
+   const arrPromises = await this.favoriteList.map((pokemon) => {
       return this.getPokemon(pokemon);
     });
     const arrFavorites = await Promise.all(arrPromises);

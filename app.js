@@ -53,8 +53,9 @@ function onBtnBackClick() {
 // favorite list----------------------------
 async function openFavoritesList() {
   showFaworitesList();
-    const favoriteList = JSON.parse(localStorage.getItem("favorite-list"));
-    if (!favoriteList) {
+   console.log(goPokemon.favoriteList);
+  if (goPokemon.favoriteList.length===0) {
+         showFaworitesList();
       return alert("Favorite list is NULL");
     }
   try {
@@ -90,7 +91,7 @@ function addInFavoriteList(e) {
 function showFaworitesList() {
   refs.btnBack.classList.toggle("visually-hidden");
   refs.btnNext.classList.toggle("visually-hidden");
-  refs.container.classList.toggle("visually-hidden");
+  refs.catalog.classList.toggle("visually-hidden");
   refs.favoriteContainer.classList.toggle("visually-hidden");
   refs.btnFavorites.classList.toggle("visually-hidden");
   refs.btnBackToCatalog.classList.toggle("visually-hidden");
